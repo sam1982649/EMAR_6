@@ -25,6 +25,15 @@
             font-size: 2.5rem;
             color: #ff9800;
         }
+        .app-image {
+            margin: 20px 0;
+        }
+        .app-image img {
+            width: 250px;
+            border-radius: 20px;
+            border: 3px solid #ff9800;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -47,9 +56,11 @@
             border-radius: 50px;
             text-decoration: none;
             margin-top: 20px;
+            transition: 0.3s;
         }
         .download-btn:hover {
             background: #ffc107;
+            transform: scale(1.05);
         }
         footer {
             margin-top: 40px;
@@ -63,6 +74,11 @@
         <h1>📚 تطبيق EMAR 6</h1>
         <p>للصف السادس – سوريا</p>
         <p>تعلم الإنجليزية بطريقة ممتعة وسهلة</p>
+        
+        <!-- الصورة -->
+        <div class="app-image">
+            <img src="main.jpg" alt="الشاشة الرئيسية لتطبيق EMAR 6">
+        </div>
         
         <div class="features">
             <div class="feature">✅ 20 درساً تفاعلياً</div>
