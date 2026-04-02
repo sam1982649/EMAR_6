@@ -5,109 +5,234 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تطبيق EMAR 6</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Tahoma', Arial, sans-serif;
-            background: linear-gradient(135deg, #1e3a8a, #0f172a);
+            font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
+            background: #0F172A;
+            color: white;
+            padding: 20px;
+        }
+
+        /* شريط التطبيق */
+        .app-bar {
+            background: #1E293B;
+            padding: 15px 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .app-bar .icon {
+            font-size: 28px;
+        }
+        .app-bar h2 {
+            font-size: 20px;
+            color: #F59E0B;
+            flex: 1;
+        }
+        .app-bar .menu {
+            font-size: 24px;
+            color: #94A3B8;
+        }
+
+        /* بطاقات الدروس */
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0 15px 0;
+            color: #F59E0B;
+            padding-right: 10px;
+            border-right: 4px solid #F59E0B;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .lesson-card {
+            background: #1E293B;
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid #334155;
+        }
+        .lesson-card:hover {
+            transform: translateY(-3px);
+            border-color: #F59E0B;
+        }
+        .lesson-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #F59E0B;
+        }
+        .lesson-title {
+            font-size: 12px;
+            color: #94A3B8;
+            margin-top: 5px;
+        }
+
+        /* زر الاختبار */
+        .test-card {
+            background: linear-gradient(135deg, #F59E0B, #D97706);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .test-card:hover {
+            transform: scale(1.02);
+        }
+        .test-card .icon {
+            font-size: 32px;
+        }
+        .test-card h3 {
+            font-size: 18px;
+            margin-top: 8px;
+        }
+        .test-card p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        /* الميزات */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .feature-card {
+            background: #1E293B;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #334155;
+        }
+        .feature-card .emoji {
+            font-size: 24px;
+        }
+        .feature-card span {
+            font-size: 12px;
+            color: #CBD5E1;
+        }
+
+        /* زر التحميل */
+        .download-btn {
+            display: block;
+            background: #10B981;
             color: white;
             text-align: center;
-            padding: 40px 20px;
-            margin: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-        }
-        h1 {
-            font-size: 2.5rem;
-            color: #ff9800;
-        }
-        .app-image {
-            margin: 20px 0;
-        }
-        .app-image img {
-            width: 250px;
-            border-radius: 20px;
-            border: 3px solid #ff9800;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 30px 0;
-            text-align: right;
-        }
-        .feature {
-            background: rgba(255,255,255,0.2);
-            padding: 12px;
-            border-radius: 12px;
-        }
-        .download-btn {
-            display: inline-block;
-            background: #ff9800;
-            color: #1e3a8a;
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: 15px;
+            font-size: 18px;
             font-weight: bold;
             border-radius: 50px;
             text-decoration: none;
-            margin-top: 20px;
+            margin: 20px 0;
             transition: 0.3s;
         }
         .download-btn:hover {
-            background: #ffc107;
-            transform: scale(1.05);
+            background: #059669;
+            transform: scale(1.02);
         }
-        .note {
-            background: rgba(0,0,0,0.5);
-            padding: 10px;
-            border-radius: 10px;
+
+        /* شريط التنقل السفلي */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            background: #1E293B;
+            padding: 12px;
+            border-radius: 30px;
             margin-top: 20px;
-            font-size: 0.85rem;
         }
+        .nav-item {
+            text-align: center;
+            color: #64748B;
+            font-size: 12px;
+        }
+        .nav-item.active {
+            color: #F59E0B;
+        }
+        .nav-item .nav-icon {
+            font-size: 22px;
+            display: block;
+        }
+
         footer {
-            margin-top: 40px;
-            font-size: 0.8rem;
-            opacity: 0.7;
+            text-align: center;
+            font-size: 11px;
+            color: #475569;
+            margin-top: 30px;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>📚 تطبيق EMAR 6</h1>
-        <p>للصف السادس – سوريا</p>
-        <p>تعلم الإنجليزية بطريقة ممتعة وسهلة</p>
-        
-        <div class="app-image">
-            <img src="main.jpg" alt="الشاشة الرئيسية">
-        </div>
-        
-        <div class="features">
-            <div class="feature">✅ 20 درساً تفاعلياً</div>
-            <div class="feature">✅ اختبارات في القراءة والقواعد</div>
-            <div class="feature">✅ تمارين المفردات اليومية</div>
-            <div class="feature">✅ نتائج فورية مع شرح</div>
-            <div class="feature">✅ توليد PDF للامتحانات</div>
-            <div class="feature">✅ مناسب للطلاب والمعلمين</div>
-        </div>
-        
-        <a href="https://www.mediafire.com/file/ih7xqwfey8gk0y0/EMAR_6.apk/file" class="download-btn" target="_blank" rel="noopener noreferrer">
-            📥 تحميل التطبيق الآن
-        </a>
-        
-        <div class="note">
-            💡 ملاحظة: بعد الضغط على زر التحميل، انتظر قليلاً ثم اضغط "Download" في صفحة MediaFire.
-        </div>
-        
-        <footer>
-            💡 للتثبيت: بعد التحميل، افتح الملف واسمح بتثبيت التطبيقات من مصادر خارجية
-            <br>
-            © 2026 سامر حسن ابراهيم. جميع الحقوق محفوظة.
-        </footer>
+
+    <!-- شريط التطبيق -->
+    <div class="app-bar">
+        <span class="icon">📚</span>
+        <h2>EMAR 6</h2>
+        <span class="menu">☰</span>
     </div>
+
+    <!-- بطاقات الدروس -->
+    <div class="section-title">📖 الدروس</div>
+    <div class="lessons-grid">
+        <div class="lesson-card"><div class="lesson-number">1</div><div class="lesson-title">My Country</div></div>
+        <div class="lesson-card"><div class="lesson-number">2</div><div class="lesson-title">At the Theatre</div></div>
+        <div class="lesson-card"><div class="lesson-number">3</div><div class="lesson-title">The Big Blue</div></div>
+        <div class="lesson-card"><div class="lesson-number">4</div><div class="lesson-title">Arts</div></div>
+        <div class="lesson-card"><div class="lesson-number">5</div><div class="lesson-title">What's on TV</div></div>
+    </div>
+
+    <!-- زر الاختبار -->
+    <div class="test-card">
+        <div class="icon">📋</div>
+        <h3>اختبار</h3>
+        <p>اختر درساً أو أكثر وابدأ الاختبار</p>
+    </div>
+
+    <!-- الميزات -->
+    <div class="section-title">✨ الميزات</div>
+    <div class="features-grid">
+        <div class="feature-card"><div class="emoji">✅</div><span>20 درساً تفاعلياً</span></div>
+        <div class="feature-card"><div class="emoji">📖</div><span>نصوص وترجمة</span></div>
+        <div class="feature-card"><div class="emoji">🔗</div><span>توصيل وفراغات</span></div>
+        <div class="feature-card"><div class="emoji">❓</div><span>تحويل إلى سؤال</span></div>
+        <div class="feature-card"><div class="emoji">📄</div><span>توليد PDF</span></div>
+        <div class="feature-card"><div class="emoji">🏫</div><span>بيانات المعلم</span></div>
+    </div>
+
+    <!-- زر التحميل -->
+    <a href="https://www.mediafire.com/file/ih7xqwfey8gk0y0/EMAR_6.apk/file" class="download-btn" target="_blank" rel="noopener noreferrer">
+        📥 تحميل التطبيق
+    </a>
+
+    <!-- شريط التنقل السفلي -->
+    <div class="bottom-nav">
+        <div class="nav-item active"><span class="nav-icon">🏠</span>الرئيسية</div>
+        <div class="nav-item"><span class="nav-icon">📚</span>الدروس</div>
+        <div class="nav-item"><span class="nav-icon">📋</span>الاختبارات</div>
+        <div class="nav-item"><span class="nav-icon">👤</span>الملف</div>
+    </div>
+
+    <footer>
+        💡 للتثبيت: بعد التحميل، افتح الملف واسمح بتثبيت التطبيقات من مصادر خارجية<br>
+        © 2026 سامر حسن ابراهيم. جميع الحقوق محفوظة.
+    </footer>
+
 </body>
 </html>
