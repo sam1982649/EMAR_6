@@ -2,8 +2,8 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تطبيق EMAR 6</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>تطبيق EMAR 6 - تعلم الإنجليزية للصف السادس</title>
     <style>
         * {
             margin: 0;
@@ -13,220 +13,301 @@
 
         body {
             font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
-            background: #0F172A;
-            color: white;
-            padding: 20px;
+            background: #E3F2FD;
+            color: #333;
         }
 
-        /* شريط التطبيق */
-        .app-bar {
-            background: #1E293B;
+        /* الهيدر الأسود */
+        .header {
+            background: #000000;
             padding: 15px 20px;
-            border-radius: 20px;
-            margin-bottom: 20px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .app-bar .icon {
-            font-size: 28px;
-        }
-        .app-bar h2 {
-            font-size: 20px;
-            color: #F59E0B;
-            flex: 1;
-        }
-        .app-bar .menu {
-            font-size: 24px;
-            color: #94A3B8;
-        }
-
-        /* بطاقات الدروس */
-        .section-title {
+        .header h1 {
+            color: white;
             font-size: 18px;
-            font-weight: bold;
-            margin: 20px 0 15px 0;
-            color: #F59E0B;
-            padding-right: 10px;
-            border-right: 4px solid #F59E0B;
-        }
-
-        .lessons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 12px;
-            margin-bottom: 30px;
-        }
-
-        .lesson-card {
-            background: #1E293B;
-            border-radius: 16px;
-            padding: 15px;
+            margin: 0;
+            flex: 1;
             text-align: center;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 1px solid #334155;
         }
-        .lesson-card:hover {
-            transform: translateY(-3px);
-            border-color: #F59E0B;
-        }
-        .lesson-number {
+        .header .key-icon {
+            color: white;
             font-size: 24px;
-            font-weight: bold;
-            color: #F59E0B;
+            width: 48px;
+            text-align: center;
         }
-        .lesson-title {
-            font-size: 12px;
-            color: #94A3B8;
-            margin-top: 5px;
+        .header .logo-icon {
+            color: white;
+            font-size: 24px;
+            width: 48px;
+            text-align: center;
         }
 
-        /* زر الاختبار */
-        .test-card {
-            background: linear-gradient(135deg, #F59E0B, #D97706);
+        /* الحاوية الرئيسية */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        /* بطاقة التعريف */
+        .info-card {
+            background: #000000;
             border-radius: 16px;
             padding: 20px;
+            margin-bottom: 20px;
+            color: white;
             text-align: center;
-            margin-bottom: 30px;
-            cursor: pointer;
-            transition: 0.3s;
         }
-        .test-card:hover {
-            transform: scale(1.02);
-        }
-        .test-card .icon {
-            font-size: 32px;
-        }
-        .test-card h3 {
-            font-size: 18px;
-            margin-top: 8px;
-        }
-        .test-card p {
-            font-size: 12px;
-            opacity: 0.9;
-        }
-
-        /* الميزات */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 30px;
-        }
-        .feature-card {
-            background: #1E293B;
-            border-radius: 12px;
-            padding: 12px;
-            text-align: center;
-            border: 1px solid #334155;
-        }
-        .feature-card .emoji {
+        .info-card h2 {
+            color: #FF9800;
             font-size: 24px;
+            margin-bottom: 10px;
         }
-        .feature-card span {
+        .info-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #DDD;
+        }
+        .info-card .version {
             font-size: 12px;
-            color: #CBD5E1;
+            color: #888;
         }
 
         /* زر التحميل */
         .download-btn {
             display: block;
-            background: #10B981;
+            background: linear-gradient(135deg, #FF9800, #F57C00);
             color: white;
             text-align: center;
-            padding: 15px;
+            padding: 16px;
             font-size: 18px;
             font-weight: bold;
             border-radius: 50px;
             text-decoration: none;
-            margin: 20px 0;
+            margin-bottom: 20px;
             transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255,152,0,0.3);
         }
         .download-btn:hover {
-            background: #059669;
             transform: scale(1.02);
+            background: linear-gradient(135deg, #F57C00, #FF9800);
         }
 
-        /* شريط التنقل السفلي */
-        .bottom-nav {
-            display: flex;
-            justify-content: space-around;
-            background: #1E293B;
+        /* عنوان القسم */
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000000;
+            margin: 20px 0 12px 0;
+            padding-right: 10px;
+            border-right: 4px solid #FF9800;
+        }
+
+        /* بطاقة معاينة الواجهة */
+        .preview-card {
+            background: #000000;
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* الفصل */
+        .chapter {
+            background: #000000;
+            border-radius: 16px;
             padding: 12px;
-            border-radius: 30px;
-            margin-top: 20px;
+            margin-bottom: 16px;
         }
-        .nav-item {
+        .chapter-title {
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            padding-right: 8px;
+        }
+        .chapter-title .emoji {
+            margin-left: 8px;
+        }
+
+        /* شبكة الدروس */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+        .lesson-card {
+            background: #42A5F5;
+            border-radius: 10px;
+            padding: 12px 4px;
             text-align: center;
-            color: #64748B;
+            color: white;
             font-size: 12px;
+            font-weight: bold;
         }
-        .nav-item.active {
-            color: #F59E0B;
+        .lesson-card.revision {
+            background: #9E9E9E;
+            font-size: 10px;
         }
-        .nav-item .nav-icon {
+        .lesson-card.blue-dark {
+            background: #1976D2;
+        }
+        .lesson-card.green {
+            background: #66BB6A;
+        }
+        .lesson-card.green-dark {
+            background: #2E7D32;
+        }
+
+        /* زر الاختبار */
+        .test-card {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            margin: 16px 0;
+        }
+        .test-card .test-icon {
+            font-size: 28px;
+        }
+        .test-card .test-title {
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 4px;
+        }
+        .test-card .test-sub {
+            color: rgba(255,255,255,0.9);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        /* الميزات */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .feature-item {
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .feature-item .emoji {
             font-size: 22px;
+        }
+        .feature-item span {
+            font-size: 12px;
+            color: #333;
             display: block;
+            margin-top: 5px;
         }
 
         footer {
             text-align: center;
             font-size: 11px;
-            color: #475569;
-            margin-top: 30px;
+            color: #888;
             padding: 20px;
+            background: #E3F2FD;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <!-- شريط التطبيق -->
-    <div class="app-bar">
-        <span class="icon">📚</span>
-        <h2>EMAR 6</h2>
-        <span class="menu">☰</span>
+    <!-- هيدر أسود -->
+    <div class="header">
+        <div class="logo-icon">📚</div>
+        <h1>الصف السادس</h1>
+        <div class="key-icon">🔑</div>
     </div>
 
-    <!-- بطاقات الدروس -->
-    <div class="section-title">📖 الدروس</div>
-    <div class="lessons-grid">
-        <div class="lesson-card"><div class="lesson-number">1</div><div class="lesson-title">My Country</div></div>
-        <div class="lesson-card"><div class="lesson-number">2</div><div class="lesson-title">At the Theatre</div></div>
-        <div class="lesson-card"><div class="lesson-number">3</div><div class="lesson-title">The Big Blue</div></div>
-        <div class="lesson-card"><div class="lesson-number">4</div><div class="lesson-title">Arts</div></div>
-        <div class="lesson-card"><div class="lesson-number">5</div><div class="lesson-title">What's on TV</div></div>
-    </div>
+    <div class="container">
 
-    <!-- زر الاختبار -->
-    <div class="test-card">
-        <div class="icon">📋</div>
-        <h3>اختبار</h3>
-        <p>اختر درساً أو أكثر وابدأ الاختبار</p>
-    </div>
+        <!-- لمحة تعريفية -->
+        <div class="info-card">
+            <h2>📚 EMAR 6</h2>
+            <p>تطبيق تعليمي متكامل لتعلم اللغة الإنجليزية لطلاب الصف السادس في سوريا.<br>
+            يحتوي على 20 درساً تفاعلياً، اختبارات متنوعة، تمارين يومية، وإمكانية إنشاء اختبارات PDF.</p>
+            <div class="version">الإصدار 1.0 | للصف السادس</div>
+        </div>
 
-    <!-- الميزات -->
-    <div class="section-title">✨ الميزات</div>
-    <div class="features-grid">
-        <div class="feature-card"><div class="emoji">✅</div><span>20 درساً تفاعلياً</span></div>
-        <div class="feature-card"><div class="emoji">📖</div><span>نصوص وترجمة</span></div>
-        <div class="feature-card"><div class="emoji">🔗</div><span>توصيل وفراغات</span></div>
-        <div class="feature-card"><div class="emoji">❓</div><span>تحويل إلى سؤال</span></div>
-        <div class="feature-card"><div class="emoji">📄</div><span>توليد PDF</span></div>
-        <div class="feature-card"><div class="emoji">🏫</div><span>بيانات المعلم</span></div>
-    </div>
+        <!-- زر التحميل -->
+        <a href="https://www.mediafire.com/file/ih7xqwfey8gk0y0/EMAR_6.apk/file" class="download-btn" target="_blank" rel="noopener noreferrer">
+            📥 تحميل التطبيق الآن (APK)
+        </a>
 
-    <!-- زر التحميل -->
-    <a href="https://www.mediafire.com/file/ih7xqwfey8gk0y0/EMAR_6.apk/file" class="download-btn" target="_blank" rel="noopener noreferrer">
-        📥 تحميل التطبيق
-    </a>
+        <!-- معاينة الواجهة -->
+        <div class="section-title">📱 شكل الواجهة</div>
+        <div class="preview-card">
 
-    <!-- شريط التنقل السفلي -->
-    <div class="bottom-nav">
-        <div class="nav-item active"><span class="nav-icon">🏠</span>الرئيسية</div>
-        <div class="nav-item"><span class="nav-icon">📚</span>الدروس</div>
-        <div class="nav-item"><span class="nav-icon">📋</span>الاختبارات</div>
-        <div class="nav-item"><span class="nav-icon">👤</span>الملف</div>
+            <!-- الفصل الأول -->
+            <div class="chapter">
+                <div class="chapter-title"><span class="emoji">📘</span> الفصل الأول</div>
+                <div class="lessons-grid">
+                    <div class="lesson-card">Unit 1</div>
+                    <div class="lesson-card">Unit 2</div>
+                    <div class="lesson-card">Unit 3</div>
+                    <div class="lesson-card">Unit 4</div>
+                    <div class="lesson-card">Unit 5</div>
+                    <div class="lesson-card revision">Revision 1</div>
+                    <div class="lesson-card blue-dark">Unit 6</div>
+                    <div class="lesson-card blue-dark">Unit 7</div>
+                    <div class="lesson-card blue-dark">Unit 8</div>
+                    <div class="lesson-card blue-dark">Unit 9</div>
+                    <div class="lesson-card blue-dark">Unit 10</div>
+                    <div class="lesson-card revision">Revision 2</div>
+                </div>
+            </div>
+
+            <!-- الفصل الثاني -->
+            <div class="chapter">
+                <div class="chapter-title"><span class="emoji">📗</span> الفصل الثاني</div>
+                <div class="lessons-grid">
+                    <div class="lesson-card green">Unit 11</div>
+                    <div class="lesson-card green">Unit 12</div>
+                    <div class="lesson-card green">Unit 13</div>
+                    <div class="lesson-card green">Unit 14</div>
+                    <div class="lesson-card green">Unit 15</div>
+                    <div class="lesson-card revision">Revision 3</div>
+                    <div class="lesson-card green-dark">Unit 16</div>
+                    <div class="lesson-card green-dark">Unit 17</div>
+                    <div class="lesson-card green-dark">Unit 18</div>
+                    <div class="lesson-card green-dark">Unit 19</div>
+                    <div class="lesson-card green-dark">Unit 20</div>
+                    <div class="lesson-card revision">Revision 4</div>
+                </div>
+            </div>
+
+            <!-- زر الاختبار -->
+            <div class="test-card">
+                <div class="test-icon">📝</div>
+                <div class="test-title">TESTS</div>
+                <div class="test-sub">اختر دروساً واختبر نفسك</div>
+            </div>
+
+        </div>
+
+        <!-- الميزات -->
+        <div class="section-title">✨ الميزات</div>
+        <div class="features">
+            <div class="feature-item"><div class="emoji">📖</div><span>20 درساً تفاعلياً</span></div>
+            <div class="feature-item"><div class="emoji">📋</div><span>اختبارات في القراءة والقواعد</span></div>
+            <div class="feature-item"><div class="emoji">📝</div><span>تمارين المفردات اليومية</span></div>
+            <div class="feature-item"><div class="emoji">💡</div><span>نتائج فورية مع شرح</span></div>
+            <div class="feature-item"><div class="emoji">📄</div><span>توليد PDF للامتحانات</span></div>
+            <div class="feature-item"><div class="emoji">🏫</div><span>بيانات المعلم والمدرسة</span></div>
+        </div>
+
     </div>
 
     <footer>
