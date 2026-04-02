@@ -113,9 +113,7 @@
 ---
 
 ## 📥 التحميل
-
-[تحميل EMAR 6.apk](https://www.mediafire.com/file/lfsasjw5gotrin5/EMAR_6.apk/file)
-
+https://www.mediafire.com/file/ih7xqwfey8gk0y0/EMAR_6.apk/file
 ---
 
 ## ⚠️ إخلاء مسؤولية
